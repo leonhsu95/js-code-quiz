@@ -1,17 +1,46 @@
-//Button
+// STARTING GAME
 var startButton = document.querySelector("#startGame");
 
 
-// Arrays
-var characters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "];
+// QUESTIONS
+var questions = [
+ {
+     title: "Commonly used data types DO NOT include:",
+     choices: ["strings", "booleans", "alerts", "numbers"],
+     answer: "alerts"
+ },
 
+ {
+    title: "How do you create a new line within a string?",
+    choices: ["\\*", "\\n", "\\b", "\\l"],
+    answer: "parenthesis"
+ },
 
-// you can turn to string ="abc...89".split("");
+ {
+     title: "Which of these is used to contain an array?",
+     choices: ["[]", "()", "{}", "<>"],
+     answer: "[]"
+ },
 
-function init(){
-    getWins();
-    getLosses();
-}
+ {
+    title: "What is NULL in JavaScript?",
+    choices: ["Undeclared value", "Undefined Value", "NaN", "No Value"],
+    answer: "No value"
+ },
+
+ {
+    title: "Which of these deletes data within an array?",
+    choices: ["pop()", "remove()", "delete()", "shift()"],
+    answer: "alerts"
+ },
+
+ {
+    title: "What can be expected from  === ?",
+    choices: ["The value is the same", "The datatype is the same", "Both value and datatpe are the same", "one variable is forced to equal another variable"],
+    answer: "Both value and datatpe are the same"
+ },
+
+];
 
 function startGame(){
 
