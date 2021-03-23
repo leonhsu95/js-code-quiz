@@ -5,22 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Document</title>
+    <title>JS Code Quiz</title>
 </head>
 <body>
     <header>
       <a href="high-scores">View High Scores</a>
-       <p>Time: </p>
+       <p id="time">Time: <span id="seconds"></span> </p>
     </header>
     
     <main>
+        <div id="home-screen">
         <h1>Coding Quiz Challenge</h1>
         <p>
-            Try to answer these JS Questions within the allotted time. <br>
-            Your score in this test is based on your completion time. <br>
+            Try to answer these JS Questions as fast as you can. <br>
+            Your final score is based on your time remaining. <br>
             Be mindful that you will be penalised for each incorrect answer by 15 seconds.
         </p>
-        <button id="startButton">Start Quiz</button>
+        <button id="start-button">Start Quiz</button>
+        </div>
+
+        <div id="quiz-content">
+
+        </div>
+        
       
     </main>
 
