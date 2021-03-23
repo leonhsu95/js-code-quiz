@@ -3,53 +3,42 @@ var timeLeft = 10+1;
 var score = parseInt(timeLeft);
 var startButton = document.querySelector("#start-button");
 var homeScreen = document.querySelector("#home-screen");
+var body = document.body;
+var quizContent = document.createElement("div");
+var questionTitle = document.createElement("h2");
+var questionChoices = document.createElement("ul");
+questionTitle.setAttribute("class","questions-title");
+questionChoices.setAttribute("class","questions-choices");
 
-
-// QUESTIONS
-var questions = [
- {
-     title: "Commonly used data types DO NOT include:",
-     choices: ["strings", "booleans", "alerts", "numbers"],
-     answer: "alerts"
- },
-
- {
-    title: "How do you create a new line within a string?",
-    choices: ["\\*", "\\n", "\\b", "\\l"],
-    answer: "parenthesis"
- },
-
- {
-     title: "Which of these is used to contain an array?",
-     choices: ["[]", "()", "{}", "<>"],
-     answer: "[]"
- },
-
- {
-    title: "What is NULL in JavaScript?",
-    choices: ["Undeclared value", "Undefined Value", "NaN", "No Value"],
-    answer: "No value"
- },
-
- {
-    title: "Which of these deletes data within an array?",
-    choices: ["pop()", "remove()", "delete()", "shift()"],
-    answer: "alerts"
- },
-
- {
-    title: "What can be expected from a === b?",
-    choices: ["The values of a and b are the same", "The datatype of a and b are the same", "Both value and datatypes of of a and b are the same", "a is declared to be equal to b"],
-    answer: "Both value and datatypes of of a and b are the same"
- },
-
-];
-
+console.log();
 
 function startQuiz(){
 
+   var index=0
+
    homeScreen.innerHTML= "";
+   body.appendChild(quizContent);
+   quizContent.appendChild(questionTitle);
+   quizContent.appendChild(questionChoices);
+
+   for (let i = 0; i < sample.length; i++) {
+
+      
+      var choiceList = document.createElement("li");
+      var choiceButton = document.createElement("button");
+      choiceButton.setAttribute("class", "choice-option");
+      
+      choiceButton.textContent= sample[index].choices[i];
+      console.log(sample[0].choices[i]);
+
+      choiceList.appendChild(choiceButton);
+      questionChoices.appendChild(choiceList);
+
+      
+   }
+  
    
+    
 
 }
 
@@ -60,7 +49,7 @@ function timer() {
       timeLeft--;
       document.querySelector("#seconds").textContent=timeLeft;
 
-      if(timeLeft === 0){
+      if(timeLeft <= 0){
          clearInterval(timerInterval);
          
       }
