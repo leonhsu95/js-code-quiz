@@ -1,5 +1,5 @@
 // STARTING GAME VARIABLES
-var timeLeft = 10+1;
+var timeLeft = 75+1;
 var score = parseInt(timeLeft);
 var startButton = document.querySelector("#start-button");
 var homeScreen = document.querySelector("#home-screen");
@@ -7,16 +7,40 @@ var body = document.body;
 var quizContent = document.createElement("div");
 var questionTitle = document.createElement("h2");
 var questionList = document.createElement("ul");
+var feedbackEl = document.createElement("div");
+var feedbackResponseEl = document.createElement("p");
 
 quizContent.setAttribute("class","quiz-content");
 questionTitle.setAttribute("class","questions-title");
 questionList.setAttribute("class","questions-list");
+feedbackEl.setAttribute("class", "feedback");
+feedbackResponseEl.setAttribute("class", "feedback");
 
-function test(){
-   console.log("hi");
-}
 
 function startQuiz(){
+
+   function isCorrect(){
+      questionList.addEventListener("click",function(event){
+
+         var element = event.target;
+         quizContent.appendChild(feedbackEl);
+         feedbackEl.appendChild(feedbackResponseEl);
+             
+         if (element.matches(".questions-button")){
+
+            var buttonValue = element.getAttribute("data-value");      
+         
+            if (buttonValue === sample[currentQuestionIndex].answer) {
+               
+              feedbackResponseEl.textContent= "Correct!";
+            }
+            else{
+              feedbackResponseEl.textContent= "Wrong!";
+              timeLeft= timeLeft-15;
+            }
+         }
+      })
+   }
 
    homeScreen.innerHTML= "";
 
@@ -51,44 +75,16 @@ function startQuiz(){
                  
           }
 
-          questionList.addEventListener("click",function(event){
-             var element = event.target;
-             
-             if (element.matches(".questions-button")){
-               var buttonValue = element.getAttribute("data-value");
-               
-               if (buttonValue === sample[currentQuestionIndex].answer) {
-                  console.log("yes!");
-               }
-               else{
-                  console.log("no!");
-               }
-             }
-          })
-
-         /*allButtons.forEach(function(event) {
-            event.addEventListener("click", test);
-         } */
-
        //These buttons need to have an on click handler that does a few things
        // 1) It should check the value of the button and compare it to sample[currentQuestionIndex].answer
        // 2) It should call GetNextQuestion()
 
     }
 
-   function checkAnswer(){
-      var isCorrect= (allButtons===sample[currentQuestionIndex].answer);
-      var feedback = document.createElement("div");
-      var feedbackResponse = document.createElement("p");
-      feedback.setAttribute("class", "feedback");
-      feedbackResponse.setAttribute("class", "feedback");
-      
-      quizContent.appendChild(feedback);
-      feedback.appendChild(feedbackResponse);
-
-   }
-
+   
+   
    getNextQuestion();
+   isCorrect();
   
 }
 
@@ -107,14 +103,6 @@ function timer() {
 
 
    }, 1000);
-
-
-
-
-
-
-
-
 
 }
 
