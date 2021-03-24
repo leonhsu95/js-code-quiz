@@ -8,12 +8,14 @@ var quizContent = document.createElement("div");
 var questionTitle = document.createElement("h2");
 var questionList = document.createElement("ul");
 
+quizContent.setAttribute("class","quiz-content");
 questionTitle.setAttribute("class","questions-title");
 questionList.setAttribute("class","questions-list");
 
 function startQuiz(){
 
    homeScreen.innerHTML= "";
+
    body.appendChild(quizContent);
    quizContent.appendChild(questionTitle);
    quizContent.appendChild(questionList);
@@ -21,32 +23,59 @@ function startQuiz(){
    var currentQuestionIndex = -1;
 
    function getNextQuestion() {
-   currentQuestionIndex += 1;
+       
+      currentQuestionIndex += 1;
 
-   //Set the text content of an element equal to sample[currentQuestionIndex].title
-   questionTitle.textContent = sample[currentQuestionIndex].title;
+       //Set the text content of an element equal to sample[currentQuestionIndex].title
+       questionTitle.textContent = sample[currentQuestionIndex].title;
 
-   //Create a for loop that creates a button for each element in sample[currentQuestionIndex].choices
-   for (let i = 0; i < 4; i++) {
+       //Create a for loop that creates a button for each element in sample[currentQuestionIndex].choices
+          for (let i = 0; i < 4; i++) {
 
-      var questionChoice = document.createElement("li");
-      questionList.appendChild(questionChoice);
-      /*var choiceButton = document.createElement("button");
-      choiceList.appendChild(choiceButton);
-      choiceButton.setAttribute("class", "choice-option");*/
+            var questionChoice = document.createElement("li");
+            var questionButton = document.createElement("button");
 
-      questionChoice.textContent = sample[currentQuestionIndex].choices[i];
-      
+            questionChoice.setAttribute("class","questions-choice");
+            questionButton.setAttribute("class","questions-button");
+            
+            questionList.appendChild(questionChoice);
+            questionChoice.appendChild(questionButton);
+            questionButton.textContent = sample[currentQuestionIndex].choices[i];  
+            
+                 
+          }
+
+          /*this.addEventListener("click", function(event){
+            
+            var element=event.target;
+            var buttonID = element.getAttribute("data-id");
+
+            console.log(buttonID);
+
+          }); */
+
+       //These buttons need to have an on click handler that does a few things
+       // 1) It should check the value of the button and compare it to sample[currentQuestionIndex].answer
+       // 2) It should call GetNextQuestion()
+
    }
-   //These buttons need to have an on click handler that does a few things
-   // 1) It should check the value of the button and compare it to sample[currentQuestionIndex].answer
-   // 2) It should call GetNextQuestion()
+
+   function checkAnswer(){
+      var isCorrect= (sample[currentQuestionIndex].choices[i]===sample[currentQuestionIndex].answer);
+      var feedback = document.createElement("div");
+      var feedbackResponse = document.createElement("p");
+      feedback.setAttribute("class", "feedback");
+      feedbackResponse.setAttribute("class", "feedback");
+      
+      quizContent.appendChild(feedback);
+      feedback.appendChild(feedbackResponse);
 
    }
 
    getNextQuestion();
   
 }
+
 
 // TIMER
 
