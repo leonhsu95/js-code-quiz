@@ -36,30 +36,45 @@ function startQuiz(){
        //Create a for loop that creates a button for each element in sample[currentQuestionIndex].choices
           for (let i = 0; i < 4; i++) {
 
-            var questionChoice = document.createElement("li");
-            var questionButton = document.createElement("button");
-            var questionValue = sample[currentQuestionIndex].choices[i];
-            var allButtons = document.querySelectorAll(".questions-button");
+            var questionChoiceEl = document.createElement("li");
+            var questionButtonEl = document.createElement("button");
+            var questionValueEl = sample[currentQuestionIndex].choices[i];
+           
 
-            questionChoice.setAttribute("class","questions-choice");
-            questionButton.setAttribute("class","questions-button");
-            questionButton.setAttribute("data-value", questionValue);
+            questionChoiceEl.setAttribute("class","questions-choice");
+            questionButtonEl.setAttribute("class","questions-button");
+            questionButtonEl.setAttribute("data-value", questionValueEl);
             
-            questionList.appendChild(questionChoice);
-            questionChoice.appendChild(questionButton);
-            questionButton.textContent = sample[currentQuestionIndex].choices[i];
+            questionList.appendChild(questionChoiceEl);
+            questionChoiceEl.appendChild(questionButtonEl);
+            questionButtonEl.textContent = sample[currentQuestionIndex].choices[i];
                  
           }
 
-         allButtons.forEach(function(event) {
+          questionList.addEventListener("click",function(event){
+             var element = event.target;
+             
+             if (element.matches(".questions-button")){
+               var buttonValue = element.getAttribute("data-value");
+               
+               if (buttonValue === sample[currentQuestionIndex].answer) {
+                  console.log("yes!");
+               }
+               else{
+                  console.log("no!");
+               }
+             }
+          })
+
+         /*allButtons.forEach(function(event) {
             event.addEventListener("click", test);
-         } 
+         } */
 
        //These buttons need to have an on click handler that does a few things
        // 1) It should check the value of the button and compare it to sample[currentQuestionIndex].answer
        // 2) It should call GetNextQuestion()
 
-    )}
+    }
 
    function checkAnswer(){
       var isCorrect= (allButtons===sample[currentQuestionIndex].answer);
