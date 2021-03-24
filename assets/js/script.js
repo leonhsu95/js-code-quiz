@@ -12,6 +12,10 @@ quizContent.setAttribute("class","quiz-content");
 questionTitle.setAttribute("class","questions-title");
 questionList.setAttribute("class","questions-list");
 
+function test(){
+   console.log("hi");
+}
+
 function startQuiz(){
 
    homeScreen.innerHTML= "";
@@ -34,34 +38,31 @@ function startQuiz(){
 
             var questionChoice = document.createElement("li");
             var questionButton = document.createElement("button");
+            var questionValue = sample[currentQuestionIndex].choices[i];
+            var allButtons = document.querySelectorAll(".questions-button");
 
             questionChoice.setAttribute("class","questions-choice");
             questionButton.setAttribute("class","questions-button");
+            questionButton.setAttribute("data-value", questionValue);
             
             questionList.appendChild(questionChoice);
             questionChoice.appendChild(questionButton);
-            questionButton.textContent = sample[currentQuestionIndex].choices[i];  
-            
+            questionButton.textContent = sample[currentQuestionIndex].choices[i];
                  
           }
 
-          /*this.addEventListener("click", function(event){
-            
-            var element=event.target;
-            var buttonID = element.getAttribute("data-id");
-
-            console.log(buttonID);
-
-          }); */
+         allButtons.forEach(function(event) {
+            event.addEventListener("click", test);
+         } 
 
        //These buttons need to have an on click handler that does a few things
        // 1) It should check the value of the button and compare it to sample[currentQuestionIndex].answer
        // 2) It should call GetNextQuestion()
 
-   }
+    )}
 
    function checkAnswer(){
-      var isCorrect= (sample[currentQuestionIndex].choices[i]===sample[currentQuestionIndex].answer);
+      var isCorrect= (allButtons===sample[currentQuestionIndex].answer);
       var feedback = document.createElement("div");
       var feedbackResponse = document.createElement("p");
       feedback.setAttribute("class", "feedback");
