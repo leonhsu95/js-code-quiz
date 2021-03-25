@@ -62,7 +62,7 @@ function startQuiz() {
             // End quiz when all questions are answered 
             if (currentQuestionIndex === questionSample.length) {
                 stopTimer();
-                //quizFinish();
+                quizFinish();
                 return null;
             }
             quizQuestionTitleEl.textContent = questionSample[currentQuestionIndex].title;
@@ -77,35 +77,77 @@ function startQuiz() {
 
 // Check if answer if data inside choices buttons match questionSample.choice
 function checkAnswer(currentQuestionIndex, buttonID) {    
-   var isCorrect = (questionSample[currentQuestionIndex].choices[buttonID] === 
-       questionSample[currentQuestionIndex].answer);
+    var isCorrect = (questionSample[currentQuestionIndex].choices[buttonID] === 
+        questionSample[currentQuestionIndex].answer);
 
-   var feedbackEl = document.createElement("div");
-   var feedbackReponseEl = document.createElement("p");
-   feedbackEl.setAttribute("class", "feedback");
+    var feedbackEl = document.createElement("div");
+    var feedbackReponseEl = document.createElement("p");
+    feedbackEl.setAttribute("class", "feedback");
 
-   feedbackEl.appendChild(feedbackReponseEl);
-   mainContent.appendChild(feedbackEl);
-   
-   if (isCorrect) {
-       feedbackReponseEl.textContent = "Correct!";
-   }
-   // Time penalty of -15s when wrong answer is clicked
-   else {
-       feedbackReponseEl.textContent = "Wrong!";
-       if (timer <= 15) {
-           timer = 0;
-       }
-       else {
-           timer = timer-15;
-       }
-   }
+    feedbackEl.appendChild(feedbackReponseEl);
+    mainContent.appendChild(feedbackEl);
+    
+    if (isCorrect) {
+        feedbackReponseEl.textContent = "Correct!";
+    }
+    // Time penalty of -15s when wrong answer is clicked
+    else {
+        feedbackReponseEl.textContent = "Wrong!";
+        if (timer <= 15) {
+            timer = 0;
+        }
+        else {
+            timer = timer-15;
+        }
+    }
 
-   // Show feedback for 0.5s
-       setTimeout(function() {
-       mainContent.removeChild(feedbackEl);
-   }, 500)
+    // Show feedback for 0.5s
+        setTimeout(function() {
+        mainContent.removeChild(feedbackEl);
+    }, 500)
 }
+
+// Show score form and replace main content
+function quizFinish() {
+   quizEndEl = document.createElement("div");
+   quizEndEl.setAttribute("class", "quiz-end");    
+
+   var h1El = document.createElement("h1");
+   h1El.textContent = "Quiz Over";
+
+   var pEl = document.createElement("p");
+   pEl.textContent = "Your final score is " + timer + ".";
+
+   var scoreFormEl = document.createElement("form");
+   scoreFormEl.setAttribute("class", "score-form");
+   var scoreLabelEl = document.createElement("label");
+   scoreLabelEl.textContent = "Enter initials: ";
+   var scoreInputEl = document.createElement("input");
+   scoreInputEl.setAttribute("type", "text");
+   var scoreSubmitEl = document.createElement("input");
+   scoreSubmitEl.setAttribute("type", "submit");
+   scoreSubmitEl.setAttribute("id", "submit");
+   scoreLabelEl.appendChild(scoreInputEl);
+   scoreFormEl.appendChild(scoreLabelEl);
+   scoreFormEl.appendChild(scoreSubmitEl);
+
+   quizEndEl.appendChild(h1El);
+   quizEndEl.appendChild(pEl);
+   quizEndEl.appendChild(scoreFormEl);
+   mainContent.replaceChild(quizEndEl, quizContentEl);
+
+   scoreSubmitEl.addEventListener("click", function(event) {
+       event.preventDefault();
+
+       if (scoreInputEl.value === "") {
+           alert("You must enter your initials!");
+           return null;
+       }
+
+       window.location = "highscores.html";
+   })
+}
+
 
 
 // TIMER FUNCTION
