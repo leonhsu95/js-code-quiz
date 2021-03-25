@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Code Quiz</title>
+    <title>JS Code Quiz</title>
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     
 </head>
 <body>
-  <header>
+  <header id="header">
   <nav>
-    <a href="highscores.html">View High Scores</a>
-    <ul>
-      <li>Time: <span id="seconds"></span></li>              
+    <a href="highscores.html" id="highscore-link">View High Scores</a>
+    <ul id="time-display">
+      <li>Time: &nbsp;<span id="seconds">&nbsp;&nbsp;&nbsp;&nbsp;</span></li>              
     </ul>
   </nav>
 </header>
 
  <main>
     <div class="quiz-home">
-      <h1>JS Code Quiz</h1>
-      <p>
-        Try to answer these JS Questions as fast as you can. <br>
+      <h1 id="quiz-home-heading">Code Quiz</h1>
+      <p id="quiz-home-blurb">
+        Correctly answer these JS Questions as fast as you can. <br>
         Your final score is based on your time remaining. <br>
         Be mindful that you will be penalised for each incorrect answer by 15 seconds.
       </p>
@@ -33,7 +33,7 @@
     </div>
  </main>
 
-  <footer>
+  <footer id="footer">
     
   </footer>
 

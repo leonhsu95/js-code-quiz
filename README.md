@@ -31,7 +31,8 @@ The website mockup should look like this:
 
  ![JS Code Quiz Home](assets/screenshots/screenshot.png)
  ![JS Code Quiz Question Example](assets/screenshots/screenshot2.png)
- ![High Score](assets/screenshots/screenshot3.png)
+ ![High Score Form](assets/screenshots/screenshot3.png)
+ ![High Score Page](assets/screenshots/screenshot3.png)
 
 ## Credits
 
@@ -63,7 +64,8 @@ SOFTWARE.
 
 - The user will answer 5 MCQs but the question sample, that is the question title, choices and answer, as well as the quantity of questions can be adjusted in assets/js/question.js
 - User will be penalised by 15 seconds for each wrong answer. With the current time set of 80 seconds, answer all question incorrectly will result in a 0 score.
-- High Score is sorted with highest scorer first. 
+- Still working on High Score Sorting.
+
 
 ## Tests
 

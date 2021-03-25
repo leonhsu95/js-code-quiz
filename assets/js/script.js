@@ -70,7 +70,7 @@ function startQuiz() {
                 allQuestionsButtons[j].textContent = (j + 1) + ". " + questionSample[currentQuestionIndex].choices[j];
             }
         }
-    })
+    });
 }
 
 // ANSWER VALIDATION
@@ -104,7 +104,7 @@ function checkAnswer(currentQuestionIndex, buttonID) {
     // Show feedback for 0.5s
         setTimeout(function() {
         mainContent.removeChild(feedbackEl);
-    }, 500)
+    }, 500);
 }
 
 // Show score form and replace main content
@@ -146,7 +146,7 @@ function quizFinish() {
 
        saveScore(scoreInputEl.value, timer);
        window.location = "highscores.html";
-   })
+   });
 }
 
 // TIMER FUNCTION
@@ -161,7 +161,7 @@ function startTimer() {
        }
        timer--;
        timeLeft.textContent = timer;
-   }, 1000)
+   }, 1000);
 }
 
 function stopTimer() {
@@ -177,7 +177,7 @@ var scoreList = document.querySelector("#highscore-list");
 var highscores = {
     initials : [],
     scores : [],
-}
+};
 
 // Save Scores to local storage
 
@@ -191,15 +191,17 @@ function saveScore(newInitials, newScore) {
     localStorage.setItem("highscores", highscoresData);
 }
 
-// Fetch Scores to local storage and sort them as High Scores
+// Fetch Scores to local storage as High Scores
 function getScores() {
     var storedHighscoresData = localStorage.getItem("highscores");
 
     if (storedHighscoresData !== null) {
-        var storedHighscoresData = JSON.parse(storedHighscoresData);
+        storedHighscoresData = JSON.parse(storedHighscoresData);
         highscores.initials = storedHighscoresData.initials;
+
         highscores.scores = storedHighscoresData.scores;
-        highscores.scores.sort((a,b)=>b - a);
+       // highscores.scores.sort((a,b)=>b - a);
+       // Intention is to sort name with score but logic is incorrect
     }
     else {
         highscores.initials = [];
@@ -238,5 +240,5 @@ if(startQuizButton){
    startQuizButton.addEventListener("click", function() {
        startTimer();
        startQuiz();
-   })
+   });
 }
