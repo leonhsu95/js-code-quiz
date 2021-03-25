@@ -144,11 +144,10 @@ function quizFinish() {
            return null;
        }
 
+       saveScore(scoreInputEl.value, timer);
        window.location = "highscores.html";
    })
 }
-
-
 
 // TIMER FUNCTION
 function startTimer() {
@@ -170,6 +169,69 @@ function stopTimer() {
    clearInterval(timerInterval);
 }
 
+// HIGH SCORES
+
+// Saving Scores as Array Object
+var scoreList = document.querySelector("#highscore-list");
+
+var highscores = {
+    initials : [],
+    scores : [],
+}
+
+// Save Scores to local storage
+
+function saveScore(newInitials, newScore) {
+    getScores();
+    
+    highscores.initials.push(newInitials);
+    highscores.scores.push(newScore);
+    
+    var highscoresData = JSON.stringify(highscores);
+    localStorage.setItem("highscores", highscoresData);
+}
+
+// Fetch Scores to local storage and sort them as High Scores
+function getScores() {
+    var storedHighscoresData = localStorage.getItem("highscores");
+
+    if (storedHighscoresData !== null) {
+        var storedHighscoresData = JSON.parse(storedHighscoresData);
+        highscores.initials = storedHighscoresData.initials;
+        highscores.scores = storedHighscoresData.scores;
+        highscores.scores.sort((a,b)=>b - a);
+    }
+    else {
+        highscores.initials = [];
+        highscores.scores = [];
+    }
+}
+
+//Show scores as High Scores
+function renderScores() {
+    scoreList.innerHTML = "";
+    getScores();
+
+    for (let i = 0; i < highscores.initials.length; i++) {
+        var scoreListEl = document.createElement("li");
+        var pEl = document.createElement("p");
+        pEl.setAttribute("class", "highscore");
+        
+        pEl.textContent = (i + 1) + ". " + highscores.initials[i] + ": " + highscores.scores[i];
+        
+        scoreListEl.appendChild(pEl);
+        scoreList.appendChild(scoreListEl);
+    }
+}
+
+function clearScores() {
+    localStorage.removeItem("highscores");
+    renderScores();
+}
+
+if (scoreList !== null) {
+    renderScores();
+}
 
 // Add event listener to generate button
 if(startQuizButton){
