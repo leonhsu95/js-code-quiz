@@ -63,7 +63,7 @@ SOFTWARE.
 ## Features
 
 - The user will answer 5 MCQs but the question sample, that is the question title, choices and answer, as well as the quantity of questions can be adjusted in assets/js/question.js
-- User will be penalised by 15 seconds for each wrong answer. With the current time set of 80 seconds, answer all question incorrectly will result in a 0 score.
+- User will be penalised by 15 seconds for each wrong answer. With the current time set of 80 seconds, answering all questions incorrectly will result in a 0 score.
 - Still working on High Score Sorting.
 
 
