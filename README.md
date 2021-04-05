@@ -1,4 +1,4 @@
-# <JS_Code_Quiz>
+# JavaScript Code Quiz
 
 Please view the Password Generator Project Here: [JS Code Quiz](https://leonhsu95.github.io/js-code-quiz/)
 
