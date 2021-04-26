@@ -2,16 +2,24 @@
 
 Please view the Password Generator Project Here: [JS Code Quiz](https://leonhsu95.github.io/js-code-quiz/)
 
-## Description
-
-This project requires us to create a multiple choice quiz for JavaScript Questions using HTML, CSS and JS.
-
 ## Table of Contents
 
 - [Installation](#installation)
+- [Description](#description)
 - [Usage](#usage)
 - [Credits](#credits)
 - [License](#license)
+
+## Description
+
+This project requires us to create a multiple choice quiz where users must answer correctly to attain the highest score. Each mistake is penalised by 15seconds. User Score is based on time.
+
+## Technologies
+
+Technologies used in this portfolio include:
+ * HTML
+ * CSS
+ * JS
 
 ## Installation
 
